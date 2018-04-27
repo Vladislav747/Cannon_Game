@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <view
+        android:id="@+id/cannonView"
         class="com.example.melo.cannon_game.CannonView"
         id="@+id/view2"
         android:layout_width="match_parent"

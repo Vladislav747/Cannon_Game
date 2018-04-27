@@ -20,6 +20,7 @@ public class CannonGameFragment extends Fragment {
                              Bundle savedInstanceState)
     {
         super.onCreateView(inflater, container, savedInstanceState);
+        //Получаем ссылку на свой Layout - fragment_game.xml
         View view =
                 inflater.inflate(R.layout.fragment_game, container, false);
 
