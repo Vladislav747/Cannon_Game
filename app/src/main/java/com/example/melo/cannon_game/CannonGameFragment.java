@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.annotation.*;
 
 /**
  * Created by Melo on 26.04.2018.
