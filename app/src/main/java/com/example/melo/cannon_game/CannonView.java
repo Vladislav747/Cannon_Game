@@ -2,8 +2,12 @@ package com.example.melo.cannon_game;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Paint;
 import android.graphics.Point;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.util.AttributeSet;
+import android.util.SparseIntArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -65,29 +69,60 @@ private Activity activity; //для вывода окна завершения �
     private boolean cannonballOnScreen; //Ядро находится на экране
     private int cannonballRadius; //Радиус ядра
     private int cannonballSpeed; //Скорость ядра
+private int cannonBaseRadius;//Радиус основания пушки
+    private int cannonLength; //Длина ствола пушки
+    private Point barrelEnd; //Конец ствола пушки
+    private int screenWidth; // Ширина экрана
+    private int screenHeight; // Высота экрана
 
+    //константы и переменные для управления звуком
+    private static final int TARGET_SOUND_ID = 0;
+    private static final int CANNON_SOUND_ID = 1;
+    private static final int BLOCKER_SOUND_ID = 2;
+private SoundPool soundPool; //Для воспроизведения звуковых эффектов
+    private SparseIntArray soundMap; //Связывание идентификаторов с SoundPool
 
-
-
+    //Переменные Paint для рисования на экране
+    private Paint textPaint; //Для вывода текста
+    private Paint cannonballPaint; //Для рисования ядра
+    private Paint cannonPaint; //Для рисования пушки
+    private Paint blockerPaint; //Для рисования блока
+    private Paint targetPaint; //Для рисования мишени
+    private Paint backgroundPaint; //Для рисования фона
 
 
     private CannonThread cannonThread; //Управление циклом игры
 
-    public CannonView(Context context) {
-        super(context);
-    }
 
     public CannonView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+
+        super(context, attrs); //Вызов конструктора суперкласса
+        activity = (Activity) context; //Сохранение ссылки на MainActivity
+
+        //Регистрация слушателя SurfaceHolder.Callback на этот объект
+        getHolder().addCallback(this);
+
+        //Инициализация игровых объектов  Line и Point;
+        blocker = new Line();
+        target = new Line();
+        cannonball = new Point();
+
+
+        //Иницилизация массива логических знаний hitStates
+        hitStates = new boolean[TARGET_PIECES];
+
+        //Инициализация SoundPool для звуковых эффектов приложения
+        //???? DEPREACATED!!
+        soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC,0);
+
+
+        //Создание контейнера
+soundMap = new SparseIntArray(3); //Создание массива с 3 возможными ячейками
     }
 
-    public CannonView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
 
-    public CannonView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
+
+
 
 
     @Override
