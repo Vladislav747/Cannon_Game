@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -14,6 +15,29 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "content", "mode"
+    productFlavors{
+elvispresley{
+    applicationId 'com.example.melo.cannon_game_elvispresley'
+    versionCode 1
+    versionName '1.0'
+    dimension "content"
+}
+        whitney {
+            applicationId 'com.example.melo.cannon_game_whitney'
+            versionCode 2
+            versionName '1.0.1'
+            dimension "content"
+        }
+        demo{
+            applicationIdSuffix '.demo'
+            dimension "mode"
+        }
+        full {
+            applicationIdSuffix'.full'
+            dimension "mode"
         }
     }
 }

@@ -6,6 +6,8 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.SparseIntArray;
 import android.view.SurfaceHolder;
@@ -94,7 +96,7 @@ private SoundPool soundPool; //Для воспроизведения звуко�
     private CannonThread cannonThread; //Управление циклом игры
 
 
-    public CannonView(Context context, AttributeSet attrs) {
+    public CannonView(Context context, @NonNull AttributeSet attrs) {
 
         super(context, attrs); //Вызов конструктора суперкласса
         activity = (Activity) context; //Сохранение ссылки на MainActivity

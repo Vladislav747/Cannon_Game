@@ -26,7 +26,7 @@ public class CannonGameFragment extends Fragment {
                 inflater.inflate(R.layout.fragment_game, container, false);
 
         // get the CannonView
-        cannonView = (CannonView) view.findViewById(R.id.cannonView);
+        cannonView = view.findViewById(R.id.cannonView);
         return view;
     }
 
