@@ -93,7 +93,7 @@ private SoundPool soundPool; //Для воспроизведения звуко�
     private Paint backgroundPaint; //Для рисования фона
 
 
-    private CannonThread cannonThread; //Управление циклом игры
+
 
 
     public CannonView(Context context, @NonNull AttributeSet attrs) {
@@ -115,11 +115,26 @@ private SoundPool soundPool; //Для воспроизведения звуко�
 
         //Инициализация SoundPool для звуковых эффектов приложения
         //???? DEPREACATED!!
+        // new SoundPool.Builder()
         soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC,0);
 
 
-        //Создание контейнера
+
+        //Создание контейнера MAP и предварительная загрузка звуков
 soundMap = new SparseIntArray(3); //Создание массива с 3 возможными ячейками
+        //Загрузка аудио файлов target_hit, cannon_fire, blocker_hit
+    soundMap.put(TARGET_SOUND_ID,
+            soundPool.load(context, R.raw.target_hit, 1));
+        soundMap.put(TARGET_SOUND_ID,
+                soundPool.load(context, R.raw.cannon_fire, 1));
+        soundMap.put(TARGET_SOUND_ID,
+                soundPool.load(context, R.raw.blocker_hit, 1));
+
+// construct Paints for drawing text, cannonball, cannon,
+        // blocker and target; these are configured in method onSizeChanged
+        //Для настройки метода onSizeChanged
+
+
     }
 
 
